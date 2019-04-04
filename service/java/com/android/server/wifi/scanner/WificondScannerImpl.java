@@ -553,6 +553,8 @@ public class WificondScannerImpl extends WifiScannerImpl implements Handler.Call
             int numFilteredScanResults = 0;
             for (int i = 0; i < mNativeScanResults.size(); ++i) {
                 ScanResult result = mNativeScanResults.get(i).getScanResult();
+                Log.d(TAG, result.toString());
+                result.timestamp = mClock.getElapsedSinceBootMillis() * 1000;
                 long timestamp_ms = result.timestamp / 1000; // convert us -> ms
                 if (timestamp_ms > mLastScanSettings.startTime) {
                     if (mLastScanSettings.hwPnoScanActive) {
@@ -614,6 +616,8 @@ public class WificondScannerImpl extends WifiScannerImpl implements Handler.Call
             int numFilteredScanResults = 0;
             for (int i = 0; i < mNativeScanResults.size(); ++i) {
                 ScanResult result = mNativeScanResults.get(i).getScanResult();
+                Log.d(TAG, result.toString());
+                result.timestamp = mClock.getElapsedSinceBootMillis() * 1000;
                 long timestamp_ms = result.timestamp / 1000; // convert us -> ms
                 if (timestamp_ms > mLastScanSettings.startTime) {
                     if (mLastScanSettings.backgroundScanActive) {
